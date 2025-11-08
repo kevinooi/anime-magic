@@ -93,7 +93,7 @@ export default function AnimeDetail() {
                 <a
                   href={anime.trailer.url ?? anime.trailer.embed_url}
                   target="_blank"
-                  className="inline-block bg-gray-100 hover:bg-white text-purple-700 font-semibold px-5 py-2 mt-4 rounded-lg transition-all cursor-pointer"
+                  className="inline-block bg-gray-100 hover:bg-white text-gray-700 font-semibold px-5 py-2 mt-4 rounded-lg transition-all cursor-pointer"
                 >
                   🎬 Watch Trailer
                 </a>
@@ -147,7 +147,7 @@ export default function AnimeDetail() {
                       href={studio.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-500"
+                      className="text-white bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-500"
                     >
                       {studio.name}
                     </a>
@@ -165,7 +165,7 @@ export default function AnimeDetail() {
                       href={prod.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-500"
+                      className="text-white bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-500"
                     >
                       {prod.name}
                     </a>
@@ -183,7 +183,7 @@ export default function AnimeDetail() {
                       href={lic.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-500"
+                      className="text-white bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-500"
                     >
                       {lic.name}
                     </a>
@@ -220,10 +220,7 @@ type AuroraBackgroundProps = {
 
 const AuroraBackground = ({ className, children, showRadialGradient = true, auroraClassName, ...props }: AuroraBackgroundProps) => {
   return (
-    <div
-      className={classNames("relative flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-900 transition-bg", className)}
-      {...props}
-    >
+    <div className={classNames("relative flex flex-col items-center justify-center bg-zinc-900 transition-bg", className)} {...props}>
       <div className={classNames("absolute inset-0 overflow-hidden", auroraClassName)}>
         <div
           className={classNames(

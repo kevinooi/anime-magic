@@ -21,7 +21,7 @@ const Option = (props: OptionProps) => {
     <div
       className={classNames(
         "select-option",
-        !isDisabled && !isSelected && "hover:text-gray-800 dark:hover:text-gray-100",
+        !isDisabled && !isSelected && "hover:text-gray-100",
         isSelected && "text-primary bg-primary-subtle",
         isDisabled && "opacity-50 cursor-not-allowed"
       )}

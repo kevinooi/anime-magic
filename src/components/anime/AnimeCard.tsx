@@ -25,7 +25,7 @@ const AnimeCard = ({ anime, index }: { anime: Anime; index: number }) => {
         <AnimatePresence>
           {hoveredIndex === index && (
             <motion.span
-              className="absolute inset-0 h-full w-full bg-gray-100 dark:bg-zinc-800/80 block rounded-3xl"
+              className="absolute inset-0 h-full w-full bg-zinc-800/80 block rounded-3xl"
               layoutId="hoverBackground"
               initial={{ opacity: 0 }}
               animate={{
@@ -42,9 +42,9 @@ const AnimeCard = ({ anime, index }: { anime: Anime; index: number }) => {
             />
           )}
         </AnimatePresence>
-        <div className="rounded-2xl z-10 relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 h-full group overflow-hidden">
+        <div className="rounded-2xl z-10 relative bg-gray-950 border border-gray-800 h-full group overflow-hidden">
           <div className="flex flex-col">
-            <div className="flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-600 group-hover:border-primary">
+            <div className="flex items-center justify-center rounded-xl bg-gray-600 group-hover:border-primary">
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 className="rounded-t-xl w-full h-84 object-fill"

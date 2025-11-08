@@ -11,7 +11,7 @@ import type { AnimeFilter } from "@/types/Anime";
 import { defaultAnimeFilter, getAnimeGenres, loadInitialAnimeList, setFilters } from "@/store/animeSlice";
 
 const typeOptions = [
-  { value: "tv", labe: "TV" },
+  { value: "tv", label: "TV" },
   { value: "movie", label: "Movie" },
   { value: "ova", label: "OVA" },
   { value: "special", label: "Special" },
@@ -74,16 +74,23 @@ const NavigationBar = () => {
   };
 
   const filters = useAppSelector((s) => s.anime.list.filters);
+  const [tempFilters, setTempFilters] = useState<AnimeFilter>(filters);
+
+  useEffect(() => {
+    if (isOpen) {
+      setTempFilters(filters);
+    }
+  }, [isOpen, filters]);
+
   const dispatch = useAppDispatch();
-  const update = (data: Partial<AnimeFilter>) => {
-    dispatch(setFilters(data));
+  const updateTemp = (data: Partial<AnimeFilter>) => {
+    setTempFilters((prev) => ({ ...prev, ...data }));
   };
   const reset = () => {
-    update({ ...defaultAnimeFilter, query: filters.query });
-    dispatch(loadInitialAnimeList());
-    onDialogClose();
+    setTempFilters({ ...defaultAnimeFilter, query: filters.query });
   };
   const handleSubmit = () => {
+    dispatch(setFilters(tempFilters));
     dispatch(loadInitialAnimeList());
     onDialogClose();
   };
@@ -98,7 +105,7 @@ const NavigationBar = () => {
       <div
         className={className(
           "flex flex-row self-start items-center justify-between py-3 max-w-6xl mx-auto px-4 rounded-xl relative z-55 w-full transition duration-200",
-          isSticky ? "bg-white dark:bg-gray-800 shadow-lg" : "bg-transparent dark:bg-transparent"
+          isSticky ? "bg-gray-800 shadow-lg" : "bg-transparent"
         )}
       >
         <a href="/" className="flex items-center gap-1 z-60">
@@ -110,7 +117,7 @@ const NavigationBar = () => {
         </div>
         <button className="flex items-center gap-1 z-60" onClick={openDialog}>
           <TbFilter size={20} />
-          <span className="hidden md:block text-sm font-bold text-white">Filter</span>
+          <span className="hidden md:block text-sm font-bold">Filter</span>
         </button>
       </div>
 
@@ -119,43 +126,43 @@ const NavigationBar = () => {
         <h4 className="font-medium mb-2">Genres</h4>
         <Select
           options={genreOptions}
-          defaultValue={genreOptions.filter((option) => option.value === Number(filters.genres))}
-          onChange={(option: any) => update({ genres: option?.value ?? undefined })}
+          value={genreOptions.filter((option) => option.value === Number(tempFilters.genres))}
+          onChange={(option: any) => updateTemp({ genres: option?.value ?? undefined })}
           isClearable
         />
         <h4 className="font-medium my-2">Type</h4>
         <Select
           options={typeOptions}
-          defaultValue={typeOptions.filter((option) => option.value === filters.type)}
-          onChange={(option: any) => update({ type: option?.value ?? undefined })}
+          value={typeOptions.filter((option) => option.value === tempFilters.type)}
+          onChange={(option: any) => updateTemp({ type: option?.value ?? undefined })}
           isClearable
         />
         <h4 className="font-medium my-2">Status</h4>
         <Select
           options={statusOptions}
-          defaultValue={statusOptions.filter((option) => option.value === filters.status)}
-          onChange={(option: any) => update({ status: option?.value ?? undefined })}
+          value={statusOptions.filter((option) => option.value === tempFilters.status)}
+          onChange={(option: any) => updateTemp({ status: option?.value ?? undefined })}
           isClearable
         />
         <h4 className="font-medium my-2">Rating</h4>
         <Select
           options={ratingOptions}
-          defaultValue={ratingOptions.filter((option) => option.value === filters.rating) ?? undefined}
-          onChange={(option: any) => update({ rating: option?.value ?? undefined })}
+          value={ratingOptions.filter((option) => option.value === tempFilters.rating) ?? undefined}
+          onChange={(option: any) => updateTemp({ rating: option?.value ?? undefined })}
           isClearable
         />
         <h4 className="font-medium my-2">Sort</h4>
         <div className="flex justify-start items-center gap-4">
           <Select
             options={orderByOptions}
-            defaultValue={orderByOptions.filter((option) => option.value === filters.order_by)}
-            onChange={(option: any) => update({ order_by: option?.value ?? undefined })}
+            value={orderByOptions.filter((option) => option.value === tempFilters.order_by)}
+            onChange={(option: any) => updateTemp({ order_by: option?.value ?? undefined })}
             isClearable
           />
           <Select
             options={sortOptions}
-            defaultValue={sortOptions.filter((option) => option.value === filters.sort)}
-            onChange={(option: any) => update({ sort: option?.value ?? undefined })}
+            value={sortOptions.filter((option) => option.value === tempFilters.sort)}
+            onChange={(option: any) => updateTemp({ sort: option?.value ?? undefined })}
             isClearable
           />
         </div>
@@ -163,7 +170,7 @@ const NavigationBar = () => {
           <button className="border rounded-lg" onClick={() => reset()}>
             Reset
           </button>
-          <button className="bg-[#7209c2] rounded-lg border" onClick={() => handleSubmit()}>
+          <button className="bg-gray-700 text-white rounded-lg border " onClick={() => handleSubmit()}>
             Apply
           </button>
         </div>

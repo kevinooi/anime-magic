@@ -28,7 +28,7 @@ const SearchBar = () => {
     <div className="px-4 flex justify-center">
       <DebounceSearch
         type="text"
-        className="w-full sm:w-sm md:w-md lg:w-lg xl:w-xl py-2 pl-8.5 pr-4 rounded-lg border-none"
+        className={`w-full sm:w-sm md:w-md lg:w-lg xl:w-xl py-2 pl-8.5 pr-4 rounded-lg border-none text-white placeholder:text-white`}
         placeholder="Search anime..."
         value={value}
         onChange={handleInputChange}

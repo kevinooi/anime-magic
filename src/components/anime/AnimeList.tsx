@@ -13,7 +13,6 @@ const AnimeList = () => {
     data,
     loading,
     isLoadingMore,
-    error,
     pagination,
     filters: { query }
   } = useAppSelector((state) => state.anime.list);
@@ -42,26 +41,26 @@ const AnimeList = () => {
 
   return (
     <div ref={containerRef}>
-      <section className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-        {loading
-          ? [...Array(4).keys()].map((item) => (
-              <Skeleton key={`loading-${item}`} className="m-4 rounded-xl bg-gray-300 dark:bg-gray-500" height={400} />
-            ))
-          : data.map((anime, index) => <AnimeCard key={anime.mal_id} anime={anime} index={index} />)}
-      </section>
-
-      {isLoadingMore && (
-        <div className="pt-8 flex justify-center items-center">
-          <Spinner size={50} />
-        </div>
-      )}
-
-      {(error || (!loading && !isLoadingMore && data.length == 0)) && (
+      {loading || data.length ? (
+        <section className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+          {loading
+            ? [...Array(4).keys()].map((item) => (
+                <Skeleton key={`loading-${item}`} className="m-4 rounded-xl bg-gray-300 dark:bg-gray-500" height={400} />
+              ))
+            : data.map((anime, index) => <AnimeCard key={anime.mal_id} anime={anime} index={index} />)}
+        </section>
+      ) : (
         <div className="text-center pt-8 pb-4">
           <div className="flex justify-center">
             <FileNotFound />
           </div>
-          <h3 className="">No data found!</h3>
+          <h3 className="text-gray-800 dark:text-white">No anime found!</h3>
+        </div>
+      )}
+
+      {isLoadingMore && (
+        <div className="pt-8 flex justify-center items-center">
+          <Spinner size={50} />
         </div>
       )}
     </div>

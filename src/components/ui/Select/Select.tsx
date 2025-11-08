@@ -91,7 +91,7 @@ function Select(props: SelectProps) {
             CONTROL_SIZES[selectSize].minH,
             state.isDisabled && "opacity-50 cursor-not-allowed",
             (() => {
-              const classes = ["bg-gray-100 dark:bg-gray-700"];
+              const classes = ["bg-gray-700"];
 
               const { isFocused } = state;
 

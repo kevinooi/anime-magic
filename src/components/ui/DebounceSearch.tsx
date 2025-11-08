@@ -13,7 +13,6 @@ type DebounceSearchProps = {
 
 const DebounceSearch = (props: DebounceSearchProps) => {
   const { wait = 250, value, onChange, onClear, ...rest } = props;
-
   const [internalVal, setInternalVal] = useState(value);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const DebounceSearch = (props: DebounceSearchProps) => {
   return (
     <span className="relative w-full flex disabled:opacity-50 disabled:cursor-not-allowed">
       <div className="absolute top-2/4 transform -translate-y-2/4 ltr:left-2.5">
-        <TbSearch className="text-lg" />
+        <TbSearch className="text-lg text-white" />
       </div>
       <input {...rest} value={internalVal} onChange={handleInputChange} />
       {value.length > 0 && onClear && (

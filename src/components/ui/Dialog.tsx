@@ -48,7 +48,7 @@ const Dialog = (props: DialogProps) => {
     onClose?.(e);
   };
 
-  const renderCloseButton = <CloseButton absolute className="ltr:right-6 rtl:left-6 top-4.5" onClick={onCloseClick} />;
+  const renderCloseButton = <CloseButton absolute className="right-6 top-4.5" onClick={onCloseClick} />;
 
   const contentStyle: { content: React.CSSProperties } = {
     content: {
