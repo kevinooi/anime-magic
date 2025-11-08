@@ -54,7 +54,7 @@ const AnimeList = () => {
           <div className="flex justify-center">
             <FileNotFound />
           </div>
-          <h3 className="text-gray-800 dark:text-white">No anime found!</h3>
+          <h3 className="text-white">No anime found!</h3>
         </div>
       )}
 
