@@ -60,7 +60,7 @@ export const loadInitialAnimeList = createAsyncThunk("anime/loadInitialAnimeList
     const data = await animeApi(filter);
     return { data: uniqBy(data.data, "mal_id"), pagination: data.pagination, filter };
   } catch (error: any) {
-    return rejectWithValue(error.message);
+    return rejectWithValue(error?.response?.data?.message ?? error?.message);
   }
 });
 
@@ -80,7 +80,7 @@ export const loadMoreAnimeList = createAsyncThunk("anime/loadMoreAnimeList", asy
       pagination: resp.pagination
     };
   } catch (error: any) {
-    return rejectWithValue(error.message);
+    return rejectWithValue(error?.response?.data?.message ?? error?.message);
   }
 });
 
@@ -90,7 +90,7 @@ export const fetchAnimeDetail = createAsyncThunk<Anime, string>("anime/fetchAnim
     const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
     return response.data.data as Anime;
   } catch (error: any) {
-    return rejectWithValue(error.message);
+    return rejectWithValue(error?.response?.data?.message ?? error?.message);
   }
 });
 

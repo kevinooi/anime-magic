@@ -13,6 +13,7 @@ const AnimeList = () => {
     data,
     loading,
     isLoadingMore,
+    error,
     pagination,
     filters: { query }
   } = useAppSelector((state) => state.anime.list);
@@ -51,10 +52,10 @@ const AnimeList = () => {
         </section>
       ) : (
         <div className="text-center pt-8 pb-4">
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center justify-center">
             <FileNotFound />
+            <h3 className="text-white max-w-md">{error ?? "No anime found!"}</h3>
           </div>
-          <h3 className="text-white">No anime found!</h3>
         </div>
       )}
 

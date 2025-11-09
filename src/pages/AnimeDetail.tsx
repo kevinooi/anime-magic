@@ -39,7 +39,7 @@ export default function AnimeDetail() {
         </button>
         <div className="flex-1 flex flex-col items-center justify-center">
           <FileNotFound />
-          <h3 className="mt-4 text-lg font-semibold">Something went wrong!</h3>
+          <h3 className="mt-4 text-lg font-semibold">{error ?? "Something went wrong!"}</h3>
         </div>
       </div>
     );
