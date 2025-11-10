@@ -11,7 +11,7 @@ export const defaultAnimeFilter: AnimeFilter = {
   genres: "",
   type: undefined,
   status: undefined,
-  rating: "r17",
+  rating: undefined,
   order_by: "popularity",
   sort: "asc"
 };

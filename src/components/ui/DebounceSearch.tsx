@@ -35,7 +35,7 @@ const DebounceSearch = (props: DebounceSearchProps) => {
         <TbSearch className="text-lg text-white" />
       </div>
       <input {...rest} value={internalVal} onChange={handleInputChange} />
-      {value.length > 0 && onClear && (
+      {internalVal.length > 0 && onClear && (
         <button onClick={onClear} className="absolute top-2/4 transform -translate-y-2/4 -right-1.5 flex">
           <HiX />
         </button>
